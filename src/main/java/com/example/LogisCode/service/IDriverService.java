@@ -15,7 +15,7 @@ public interface IDriverService {
 
     void createDriver(Driver driver);
 
-    Vehicle updateDriver(Driver driver);
+    Driver updateDriver(Driver driver);
 
     void deleteDriver(Long id);
 

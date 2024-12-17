@@ -17,6 +17,9 @@ public class Trip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private boolean deleted = false;
+
 
     //relationship with the driver and vehicle
     @ManyToOne

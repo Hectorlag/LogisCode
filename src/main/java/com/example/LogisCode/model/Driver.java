@@ -18,5 +18,7 @@ public class Driver {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String licenseNumber;
+
+    @Column(nullable = false)
+    private boolean deleted = false;
 }
