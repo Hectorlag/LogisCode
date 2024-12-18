@@ -8,13 +8,13 @@ import java.util.Optional;
 public interface IVehicleService {
 
 
-    List<Vehicle> getAllVehicle();
+    List<Vehicle> getAllVehicles();
 
     Optional<Vehicle> getVehicleById(Long id);
 
-    Vehicle createVehicle(Vehicle vehicle);
+    void createVehicle(Vehicle vehicle);
 
-    Vehicle updateVehicle(Long id, Vehicle vehicle);
+    Vehicle updateVehicle(Vehicle vehicle);
 
     void deleteVehicle(Long id);
 }

@@ -3,6 +3,7 @@ package com.example.LogisCode.service;
 import com.example.LogisCode.model.Driver;
 import com.example.LogisCode.model.Vehicle;
 import com.example.LogisCode.repository.IDriverRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +48,15 @@ public class DriverService implements IDriverService{
 
     @Override
     public void deleteDriver(Long id) {
-
+       Optional<Driver> driver = this.getDriverById(id);
+       if(driver.isPresent()){
+           Driver existingDriver = driver.get();
+           existingDriver.setDeleted(true);
+           iDriverRepository.save(existingDriver);
+       }
+        else {
+        throw new EntityNotFoundException("Driver with id " + id + " not found");
     }
+    }
+
 }

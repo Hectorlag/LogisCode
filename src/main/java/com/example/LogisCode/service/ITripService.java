@@ -7,14 +7,13 @@ import java.util.Optional;
 
 public interface ITripService {
 
-
     List<Trip> getAllTrips();
 
     Optional<Trip> getTripById(Long id);
 
-    Trip createTrip(Trip trip);
+    void createTrip(Trip trip);
 
-    Trip updateTrip(Long id, Trip tripDetails);
+    Trip updateTrip(Trip trip);
 
     void deleteTrip(Long id);
 }
