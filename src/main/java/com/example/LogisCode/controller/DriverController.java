@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/drivers")
-@PreAuthorize("denyAll()")
 public class DriverController {
 
     private final IDriverService driverService;
@@ -22,15 +21,11 @@ public class DriverController {
     }
 
     @GetMapping
-    // Permitir acceso a usuarios autenticados para obtener la lista de choferes
-    @PreAuthorize("isAuthenticated()")
     public List<Driver> getAllDrivers() {
         return driverService.getAllDrivers();
     }
 
     @GetMapping("/{id}")
-    // Permitir acceso a usuarios autenticados para obtener un chofer por ID
-    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Driver> getDriverById(@PathVariable Long id) {
         Optional<Driver> driver = driverService.getDriverById(id);
         return driver.map(ResponseEntity::ok)

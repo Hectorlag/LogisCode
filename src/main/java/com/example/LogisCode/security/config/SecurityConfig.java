@@ -16,14 +16,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .csrf(csrf -> csrf.disable()) // Desactiva CSRF para simplificar pruebas
+                .csrf(csrf -> csrf.disable()) // Desactiva CSRF para pruebas (habilitar en producción)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/drivers/**", "/api/vehicles/**", "/api/trips/**").authenticated() // Protege estas rutas para usuarios autenticados
-                        .anyRequest().permitAll() // Permite todas las demás solicitudes
+                        .requestMatchers("/api/drivers/**", "/api/vehicles/**", "/api/trips/**").authenticated() // Protege rutas
+                        .anyRequest().permitAll() // Permite el resto
                 )
-                .formLogin(Customizer.withDefaults()) // Habilita formulario de login por defecto
-                .oauth2Login(Customizer.withDefaults()) // Habilita login con OAuth2
+                .formLogin(Customizer.withDefaults()) // Login por defecto
+                .oauth2Login(Customizer.withDefaults()) // Login con OAuth2
                 .build();
     }
-}
 
+}
