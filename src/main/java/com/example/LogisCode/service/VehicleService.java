@@ -37,6 +37,7 @@ public class VehicleService implements IVehicleService{
         Optional<Vehicle> v = this.getVehicleById(vehicle.getId());
         if (v.isPresent()) {
             Vehicle existingVehicle = v.get();
+            existingVehicle.setModel(vehicle.getModel());
             // Actualizar otros campos según sea necesario
             return iVehicleRepository.save(existingVehicle);
         }

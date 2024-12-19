@@ -20,6 +20,8 @@ public class Vehicle {
     @Column(nullable = false)
     private boolean deleted = false;
 
+    private String model;
+
     public Long getId() {
         return id;
     }
@@ -34,5 +36,13 @@ public class Vehicle {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 }

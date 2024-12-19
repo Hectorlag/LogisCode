@@ -14,11 +14,16 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .csrf(csrf -> csrf.disable())
-                .formLogin(Customizer.withDefaults())
-                .oauth2Login(Customizer.withDefaults())
+                .csrf(csrf -> csrf.disable()) // Desactiva CSRF para simplificar pruebas
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/drivers/**", "/api/vehicles/**", "/api/trips/**").authenticated() // Protege estas rutas para usuarios autenticados
+                        .anyRequest().permitAll() // Permite todas las demás solicitudes
+                )
+                .formLogin(Customizer.withDefaults()) // Habilita formulario de login por defecto
+                .oauth2Login(Customizer.withDefaults()) // Habilita login con OAuth2
                 .build();
     }
 }
+
